@@ -10,6 +10,7 @@ def main():
         cmd = msg[0]
         if cmd == 'QUIT':
             break
+        print('cmd was ACTUALLY this: ' + cmd)
         arg = msg[1].upper()
         if not re.fullmatch('[A-Z]+', arg):
             result = [-1, 'Argument not included']
