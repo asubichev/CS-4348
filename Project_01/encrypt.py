@@ -5,13 +5,12 @@ def main():
     passkey = ''
     for line in sys.stdin:
         result = [None, None]
-        msg = line[:-1].split(" ", 1) #msg[0] = cmd, msg[1] = arg, [:-1] to not include "\n"
+        msg = line.split(" ", 1) #msg[0] = cmd, msg[1] = arg
         #TODO: make cmd accept anycase
         cmd = msg[0]
-        if cmd == 'QUIT':
+        if cmd.rstrip() == 'QUIT':
             break
-        print('cmd was ACTUALLY this: ' + cmd)
-        arg = msg[1].upper()
+        arg = msg[1].upper().rstrip() #to get rid of possible newline after argument
         if not re.fullmatch('[A-Z]+', arg):
             result = [-1, 'Argument not included']
 
