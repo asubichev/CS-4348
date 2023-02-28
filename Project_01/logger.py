@@ -10,7 +10,7 @@ def main():
     for line in sys.stdin:
         if 'QUIT' == line.rstrip():
             break
-        print('Input processed')
+        #print('Input processed')
         towrite = processinput(line, tm = datetime.now())
         writelog(towrite)
     towrite = processinput('STOP Logging Stopped.\n', tm = datetime.now())
