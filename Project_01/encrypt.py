@@ -5,9 +5,11 @@ def main():
     for line in sys.stdin:
         #print('Input processed')
         msg = line[:-1].split(" ", 1) #msg[0] = cmd, msg[1] = arg, [:-1] to not include "\n"
+        #TODO: make cmd accept anycase
         cmd = msg[0]
         if cmd == 'QUIT':
             break
+        #TODO: convert arg to all uppercase
         arg = msg[1]
         if cmd == 'PASSKEY':
             passkey = msg[1]
@@ -29,7 +31,14 @@ def encrypt(msg, key):
     
     outputstr = ''
     for i in range(len(msg)):
-        nxchr = ''
+        #number of characters to shift
+        nmshift = ord(key[i]) - 65
+        newpos = ord(msg[i]) - 65 + nmshift
+        if newpos > 26: newpos -= 26
+        newchar = chr(newpos + 65)
+        outputstr += newchar
+    
+    return outputstr
 
 
 #will return decrypted key, or return error
