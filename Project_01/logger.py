@@ -7,10 +7,11 @@ def main():
     towrite = processinput('START Logging Started.\n', tm = datetime.now()) 
     writelog(towrite)
 
+    #TODO: make 'QUIT' accept anycase
     for line in sys.stdin:
         if 'QUIT' == line.rstrip():
             break
-        print('Input processed')
+        #print('Input processed')
         towrite = processinput(line, tm = datetime.now())
         writelog(towrite)
     towrite = processinput('STOP Logging Stopped.\n', tm = datetime.now())
