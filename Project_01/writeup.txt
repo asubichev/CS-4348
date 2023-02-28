@@ -1,0 +1,19 @@
+– How did you approach the project?
+    I started the project two weeks before the due date, and planned to complete each step as specified in the instruction pdf
+– How did you organize the project? Why?
+    I planned to finish the programs individually in order of specification, and only at the end tie everything together with pipes
+– What problems did you encounter?
+    - My first problem was forgetting how to manage stdin/stdout in python
+    - Getting the formatting right for output in the logger program
+    - Figuring out the math behind the vigenere cipher
+    - Getting input edge cases right in the encryption program
+– How did you fix them? (Respectively)
+– What did you learn doing this project?
+    - I am significantly more confident in making simple python scripts
+
+
+– If you did not complete some feature of the project, why not?
+∗ What unsolvable problems did you encounter?
+∗ How did you try to solve the problems?
+∗ Where do you think the solution might lay?
+· What would you do to try and solve the problem if you had more time?
