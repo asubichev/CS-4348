@@ -12,10 +12,14 @@ def main():
     encps = Popen(['python', 'encrypt.py'], stdout=sys.stdout, stdin=PIPE, encoding='utf8')
 
     history = []
-    print('Please enter a command: ')
+    print('Please enter a command:')
 
+    #TODO: include 'help' functionality
+    #TODO: include a menu that shows possible commands
+    #NOTE: history should prepend, and then only show recent 20
+    #TODO: history should remove stuff older than 20
     for line in sys.stdin:
-        line = line[:-1]
+        line = line[:-1] #the 'better' approach is probably still using rstrip
         if line == 'quit':
             #send QUIT to enc & log
             logps.stdin.write('QUIT')
@@ -28,12 +32,17 @@ def main():
         elif line == 'decrypt':
             print()
         elif line == 'history':
-            print()
+            printhistory(history)
         else:
-            print('Invalid Commmand')
-        print()
+            print('--Invalid Commmand--')
+        print('Please enter a command:')
 
     print('Program Quit')
+
+def printhistory(history):
+    for i in range(min(len(history), 20)): #min 20 bc no need to show entire history of mankind
+        print(str(i+1) + '. ' + str(history[i]))
+
 
 if __name__ == '__main__':
     main()
