@@ -22,7 +22,7 @@ def processinput(str, tm):
     timestamp = tm.strftime("%Y-%m-%d %H:%M") #reformat to get rid of seconds
     msg = str.split(" ", 1) #splits string 1 times at " " character
     if len(msg) == 1:
-        raise Exception("Message has to have 1 command and 1 argument")
+        raise Exception('Message has to have 1 command and 1 argument')
     out = timestamp + " [" + msg[0] + "] " + msg[1]
     return out
 
