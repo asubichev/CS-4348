@@ -4,17 +4,19 @@ import re
 def main():
     passkey = ''
     for line in sys.stdin:
-        #print('Input processed')
+        result = [None, None]
         msg = line[:-1].split(" ", 1) #msg[0] = cmd, msg[1] = arg, [:-1] to not include "\n"
         #TODO: make cmd accept anycase
         cmd = msg[0]
         if cmd == 'QUIT':
             break
         arg = msg[1].upper()
+        if not re.fullmatch('[A-Z]+', arg):
+            result = [-1, 'Argument not included']
 
-        result = [None, None]
-        if cmd == 'PASSKEY':
-            if re.matches('[A-Z]*', arg):
+        
+        if result[0] != -1 and cmd == 'PASSKEY':
+            if re.fullmatch('[A-Z]*', arg):
                 passkey = msg[1]
                 result = [0, '']
             else:
@@ -23,12 +25,17 @@ def main():
             result = encrypt(arg, passkey)
         elif cmd == 'DECRYPT':
             result = decrypt(arg, passkey)
+
+        if result[0] == -1:
+            print('ERROR ' + result[1])
+        else:
+            print('RESULT ' + result[1])
     #program end
 
 #will return encrypted key, or return error
 #returns list with exit code and string, where arr[0] == -1 is an error, and arr[0] == 0 is success
 def encrypt(msg, key):
-    if key == '': return [-1, '']
+    if key == '': return [-1, 'Password not set']
 
     #first, make key as long as msg
     #next, iterate through msg and key together to find enc string
@@ -52,7 +59,7 @@ def encrypt(msg, key):
 
 #will return decrypted key, or return error
 def decrypt(msg, key):
-    if key == '': return [-1, '']
+    if key == '': return [-1, 'Password not set']
 
     #make key as long as message again
     ogkeylen = len(key)
