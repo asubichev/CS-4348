@@ -4,6 +4,7 @@ import re
 def main():
     passkey = ''
     for line in sys.stdin:
+        print('the line is this: ' + line)
         result = [None, None]
         msg = line.split(" ", 1) #msg[0] = cmd, msg[1] = arg
         #TODO: make cmd accept anycase

@@ -10,7 +10,7 @@ def main():
     # make ps for logger program
     logps = Popen(['python', 'logger.py'], stdout=PIPE, stdin=PIPE, encoding='utf8')
     # make ps for encryption program
-    encps = Popen(['python', 'encrypt.py'], stdout=PIPE, stdin=PIPE, encoding='utf8')
+    encps = Popen(['python', 'encrypt.py'], stdout=sys.stdout, stdin=PIPE, encoding='utf8')
 
     history = []
     print('Please enter a command:')
@@ -25,8 +25,8 @@ def main():
         #TODO: quit doesn't work if it's not the first command
         if line == 'quit':
             #send QUIT to enc & log
-            logps.stdin.write('QUIT')
-            encps.stdin.write('QUIT')
+            logps.stdin.write('QUIT\n')
+            encps.stdin.write('QUIT\n')
             break
         elif line == 'password':
             pkinp = usehistory(history)
@@ -34,8 +34,8 @@ def main():
             if pkinp == '':
                 pkinp = input('Please enter password: ')
                 history.insert(0, pkinp) # don't store if history used
-            encps.stdin.write('PASSKEY' + pkinp)
-            logps.stdin.write('PASSKEY' + ' new passkey set.\n') # i believe encryption program writes to logps, not driver.. T-T not sure
+            encps.stdin.write('PASSKEY ' + pkinp + '\n')
+            logps.stdin.write('PASSKEY' + ' New passkey set.\n') # i believe encryption program writes to logps, not driver.. T-T not sure
         elif line == 'encrypt':
             print()
         elif line == 'decrypt':
@@ -49,7 +49,9 @@ def main():
     print('Program Quit')
 
 def printhistory(history):
-    if len(history) == 0: return print('History Empty!')
+    if len(history) == 0: 
+        print('History Empty!')
+        return ''
     print('History:')
     for i in range(min(len(history), 20)): # min 20 bc no need to show entire history of mankind
         print(str(i+1) + '. ' + str(history[i]))
