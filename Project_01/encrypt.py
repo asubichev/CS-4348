@@ -4,7 +4,7 @@ import re
 def main():
     passkey = ''
     for line in sys.stdin:
-        print('the line is this: ' + line)
+        print('the line is this: ' + line[:-1])
         result = [None, None]
         msg = line.split(" ", 1) #msg[0] = cmd, msg[1] = arg
         #TODO: make cmd accept anycase
@@ -18,7 +18,7 @@ def main():
         
         if result[0] != -1 and cmd == 'PASSKEY':
             if re.fullmatch('[A-Z]*', arg):
-                passkey = msg[1]
+                passkey = msg[1].rstrip()
                 result = [0, '']
             else:
                 result = [-1, '']
@@ -51,7 +51,7 @@ def encrypt(msg, key):
         #number of characters to shift
         nmshift = ord(key[i]) - 65
         newpos = ord(msg[i]) - 65 + nmshift
-        if newpos > 26: newpos -= 26
+        if newpos >= 26: newpos -= 26
         newchar = chr(newpos + 65)
         outputstr += newchar
     
