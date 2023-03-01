@@ -22,18 +22,21 @@ def main():
     #TODO: all input()s should be validated
     for line in sys.stdin:
         line = line[:-1] # the 'better' approach is probably still using rstrip
-        #TODO: quit doesn't work if it's not the first command
         if line == 'quit':
-            #send QUIT to enc & log
+            # send QUIT to enc & log
             logps.stdin.write('QUIT\n')
             encps.stdin.write('QUIT\n')
+
+            # i'm not sure why i have to close these, but they prevent Broken Pipe error
+            logps.stdin.close()
+            encps.stdin.close()
             break
         elif line == 'password':
             pkinp = usehistory(history)
-            #usehistory will return empty string if user doesn't want to use history, or if history is empty
+            # usehistory will return empty string if user doesn't want to use history, or if history is empty
             if pkinp == '':
                 pkinp = input('Please enter password: ')
-                history.insert(0, pkinp) # don't store if history used
+                # history.insert(0, pkinp) # don't store if history used, SIKE we don't even store passwords
             encps.stdin.write('PASSKEY ' + pkinp + '\n')
             logps.stdin.write('PASSKEY' + ' New passkey set.\n') # i believe encryption program writes to logps, not driver.. T-T not sure
         elif line == 'encrypt':
