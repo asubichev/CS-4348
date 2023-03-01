@@ -10,7 +10,7 @@ def main():
     # make ps for logger program
     logps = Popen(['python3', 'logger.py'], stdout=PIPE, stdin=PIPE, encoding='utf8')
     # make ps for encryption program
-    encps = Popen(['python3', 'encrypt.py'], stdout=sys.stdout, stdin=PIPE, encoding='utf8')
+    encps = Popen(['python3', 'encrypt.py'], stdout=PIPE, stdin=PIPE, encoding='utf8')
 
     history = []
     print('Please enter a command:')
