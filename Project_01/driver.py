@@ -2,6 +2,7 @@ import sys
 from subprocess import Popen, PIPE
 
 def main():
+    tempvar = len(sys.argv)
     if len(sys.argv) > 2:
         raise Exception('Only argument should be log file')
     ff = sys.argv[1]
@@ -18,17 +19,23 @@ def main():
     #TODO: include a menu that shows possible commands
     #NOTE: history should prepend, and then only show recent 20
     #TODO: history should remove stuff older than 20
+    #TODO: all input()s should be validated
     for line in sys.stdin:
         line = line[:-1] # the 'better' approach is probably still using rstrip
+        #TODO: quit doesn't work if it's not the first command
         if line == 'quit':
             #send QUIT to enc & log
             logps.stdin.write('QUIT')
             encps.stdin.write('QUIT')
             break
         elif line == 'password':
-            usehistory(history)
-            pk = input('Please enter password: ')
-
+            pkinp = usehistory(history)
+            #usehistory will return empty string if user doesn't want to use history, or if history is empty
+            if pkinp == '':
+                pkinp = input('Please enter password: ')
+                history.insert(0, pkinp) # don't store if history used
+            encps.stdin.write('PASSKEY' + pkinp)
+            logps.stdin.write('PASSKEY' + ' new passkey set.\n') # i believe encryption program writes to logps, not driver.. T-T not sure
         elif line == 'encrypt':
             print()
         elif line == 'decrypt':
@@ -42,17 +49,20 @@ def main():
     print('Program Quit')
 
 def printhistory(history):
+    if len(history) == 0: return print('History Empty!')
+    print('History:')
     for i in range(min(len(history), 20)): # min 20 bc no need to show entire history of mankind
         print(str(i+1) + '. ' + str(history[i]))
 
-#TODO: needs input validation
 def usehistory(history):
+    if len(history) == 0: return ''
     choiche = input('Would you like to use history?\n1. Yes, I would\n2. No, I wouldn\'t\n') # newline is already stripped w input()
-    if choice == 1:
-        printhistory()
+    if choiche == '1':
+        printhistory(history)
         seli = input('Please indicate item number: ')
-        return history[seli - 1]
-    if choiche == 2:
+        #TODO: check if seli is an int
+        return history[int(seli) - 1]
+    if choiche == '2':
         return ''
 
 

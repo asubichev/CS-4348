@@ -8,6 +8,7 @@
     - Figuring out the math behind the vigenere cipher
     - Getting input edge cases right in the encryption program
     - For some reason, when I passed 'QUIT' into the encryption program, it didn't
+    - I would process number input as integers, even though all stdin comes in strings
 – How did you fix them? (Respectively)
     - 1
     - 1
@@ -15,6 +16,7 @@
     - 1
     - I had to change the encryption program's stdout to sys.stdout since otherwise print debugging wasn't working. I had to use print debuggging since for some reason, VSCode's python debugger wasn't detecting breakpoints in the processes.
         I finally figured out that I was using [:-1] to get rid of the newline character in the encryption program, and it was removing the 'T' in 'QUIT' causing problems. Ended up switching to rstrip()
+    - Num input
 
 – What did you learn doing this project?
     - I am significantly more confident in making simple python scripts
