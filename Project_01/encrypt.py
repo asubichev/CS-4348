@@ -12,7 +12,7 @@ def main():
         if cmd.rstrip() == 'QUIT':
             break
         arg = msg[1].upper().rstrip() #to get rid of possible newline after argument
-        if not re.fullmatch('[A-Z]+', arg):
+        if not re.fullmatch('[A-Z]+', arg): #this means argument isn't one allcaps word
             result = [-1, 'Argument not included']
 
         
