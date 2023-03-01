@@ -4,7 +4,7 @@ import re
 def main():
     passkey = ''
     for line in sys.stdin:
-        print('the line is this: ' + line[:-1])
+        print('the line is this: ' + line.rstrip())
         result = [None, None]
         msg = line.split(" ", 1) #msg[0] = cmd, msg[1] = arg
         #TODO: make cmd accept anycase
@@ -18,7 +18,7 @@ def main():
         
         if result[0] != -1 and cmd == 'PASSKEY':
             if re.fullmatch('[A-Z]*', arg):
-                passkey = msg[1].rstrip()
+                passkey = arg
                 result = [0, '']
             else:
                 result = [-1, '']

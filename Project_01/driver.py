@@ -3,8 +3,8 @@ from subprocess import Popen, PIPE
 
 def main():
     tempvar = len(sys.argv)
-    if len(sys.argv) > 2:
-        raise Exception('Only argument should be log file')
+    if len(sys.argv) != 2:
+        raise Exception('Log file as argument required')
     ff = sys.argv[1]
 
     # make ps for logger program
