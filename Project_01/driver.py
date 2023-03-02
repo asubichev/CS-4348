@@ -32,20 +32,35 @@ def main():
             encps.stdin.close()
             break
         elif line == 'password':
-            pkinp = usehistory(history)
+            usrarg = usehistory(history)
             # usehistory will return empty string if user doesn't want to use history, or if history is empty
-            if pkinp == '':
-                pkinp = input('Please enter password: ')
+            if usrarg == '':
+                usrarg = input('Please enter password: ')
                 # history.insert(0, pkinp) # don't store if history used, SIKE we don't even store passwords
-            encps.stdin.write('PASSKEY ' + pkinp + '\n')
-            logps.stdin.write('PASSKEY' + ' New passkey set.\n') # i believe encryption program writes to logps, not driver.. T-T not sure
+            encps.stdin.write('PASSKEY ' + usrarg + '\n')
+            logps.stdin.write('PASSKEY New passkey set.\n') # i believe encryption program writes to logps, not driver.. T-T not sure
         elif line == 'encrypt':
-            wwinp = usehistory(history)
-            if wwinp == '':
-                wwinp = input('Please enter word to encrypt: ')
-                history.insert(0, wwinp)
+            usrarg = usehistory(history)
+            if usrarg == '':
+                usrarg = input('Please enter string to encrypt: ')
+                history.insert(0, usrarg)
+            else:
+                #we pull this used string to most recent
+                history.remove(usrarg)
+                history.insert(0, usrarg)
+            encps.stdin.write('ENCRYPT ' + usrarg + '\n')
+            logps.stdin.write('ENCRYPT Message encrypted.\n')
         elif line == 'decrypt':
-            print()
+            usrarg = usehistory(history)
+            if usrarg == '':
+                usrarg = input('Please enter string to decrypt: ')
+                history.insert(0,usrarg)
+            else:
+                #we pull this used string to most recent
+                history.remove(usrarg)
+                history.insert(0, usrarg)
+            encps.stdin.write('DECRYPT ' + usrarg + '\n')
+            logs.stdin.write('DECRYPT Message decrypted.\n')
         elif line == 'history':
             printhistory(history)
         else:
