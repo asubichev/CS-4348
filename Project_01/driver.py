@@ -40,7 +40,10 @@ def main():
             encps.stdin.write('PASSKEY ' + pkinp + '\n')
             logps.stdin.write('PASSKEY' + ' New passkey set.\n') # i believe encryption program writes to logps, not driver.. T-T not sure
         elif line == 'encrypt':
-            print()
+            wwinp = usehistory(history)
+            if wwinp == '':
+                wwinp = input('Please enter word to encrypt: ')
+                history.insert(0, wwinp)
         elif line == 'decrypt':
             print()
         elif line == 'history':
