@@ -48,6 +48,7 @@ def main():
                 #we pull this used string to most recent
                 history.remove(usrarg)
                 history.insert(0, usrarg)
+            #TODO: store encrypted string in history as well
             encps.stdin.write('ENCRYPT ' + usrarg + '\n')
             logps.stdin.write('ENCRYPT Message encrypted.\n')
         elif line == 'decrypt':
@@ -59,6 +60,7 @@ def main():
                 #we pull this used string to most recent
                 history.remove(usrarg)
                 history.insert(0, usrarg)
+            #TODO: store decrypted string in history as well
             encps.stdin.write('DECRYPT ' + usrarg + '\n')
             logs.stdin.write('DECRYPT Message decrypted.\n')
         elif line == 'history':
