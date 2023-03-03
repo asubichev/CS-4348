@@ -1,11 +1,11 @@
 import sys
+import re
 from subprocess import Popen, PIPE
 
 def main():
-    tempvar = len(sys.argv)
     if len(sys.argv) != 2:
         raise Exception('Log file as argument required')
-    ff = sys.argv[1]
+    filename = sys.argv[1]
 
     # make ps for logger program
     logps = Popen(['python3', 'logger.py'], stdout=PIPE, stdin=PIPE, encoding='utf8')
@@ -26,7 +26,9 @@ def main():
         if line == 'quit':
             # send QUIT to enc & log
             logps.stdin.write('QUIT\n')
+            logps.stdin.flush()
             encps.stdin.write('QUIT\n')
+            encps.stdin.flush()
 
             # i'm not sure why i have to close these, but they prevent Broken Pipe error
             logps.stdin.close()
@@ -42,11 +44,13 @@ def main():
                 print('Please enter a command:')
                 continue
             encps.stdin.write('PASSKEY ' + usrarg + '\n')
-            logps.stdin.write('PASSKEY New passkey set.\n') # i believe encryption program writes to logps, not driver.. T-T not sure
+            encps.stdin.flush()
+            logps.stdin.write(encps.stdout.readline())
+            logps.stdin.flush()
         elif line == 'encrypt':
             usrarg = usehistory(history)
             if usrarg == '':
-                usrarg = input('Please enter string to encrypt: ')
+                usrarg = input('Please enter string to encrypt: ').upper()
                 history.insert(0, usrarg)
             elif usrarg == None:
                 print('Please enter a command:')
@@ -55,14 +59,20 @@ def main():
                 #we pull this used string to most recent
                 history.remove(usrarg)
                 history.insert(0, usrarg)
-            #FIXME: store encrypted string in history as well
             encps.stdin.write('ENCRYPT ' + usrarg + '\n')
-            logps.stdin.write('ENCRYPT Message encrypted.\n')
+            encps.stdin.flush()
+            output = encps.stdout.readline()
+            if 'RESULT' in output: # encryption didn't return an error
+                sprtstr = output.split(" ")
+                if len(sprtstr) > 1:
+                    history.insert(0, sprtstr[1].rstrip())
+            logps.stdin.write(output)
+            logps.stdin.flush()
         elif line == 'decrypt':
             usrarg = usehistory(history)
             if usrarg == '':
-                usrarg = input('Please enter string to decrypt: ')
-                history.insert(0,usrarg)
+                usrarg = input('Please enter string to decrypt: ').upper()
+                history.insert(0, usrarg)
             elif usrarg == None:
                 print('Please enter a command:')
                 continue
@@ -72,11 +82,21 @@ def main():
                 history.insert(0, usrarg)
             #FIXME: store decrypted string in history as well
             encps.stdin.write('DECRYPT ' + usrarg + '\n')
-            logps.stdin.write('DECRYPT Message decrypted.\n')
+            encps.stdin.flush()
+            output = encps.stdout.readline()
+            if 'RESULT' in output:
+                sprtstr = output.split(" ")
+                if len(sprtstr) > 1:
+                    history.insert(0, sprtstr[1].rstrip())
+            logps.stdin.write(output)
+            logps.stdin.flush()
         elif line == 'history':
             printhistory(history)
         else:
             print('--Invalid Commmand--')
+        listcomp = []
+        [listcomp.append(x) for x in history if x not in listcomp]
+        history = listcomp # remove dupes
         print('Please enter a command:')
 
     print('Program Quit')

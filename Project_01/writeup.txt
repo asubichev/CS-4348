@@ -11,6 +11,7 @@
     - I would process number input as integers, even though all stdin comes in strings
     - For some reason, fullmatch() wasn't recognized as a function
     - Broken pipe error
+    - Code gets stuck on awaiting output from encrypt program
 – How did you fix them? (Respectively)
     - 1
     - 1
@@ -21,6 +22,7 @@
     - Num input
     - I had to change to python3 since python2 doesn't support fullmatch()
     - Broken Pipe fixed by closing stdin for subprocesses
+    - Needed to flush stdout in the encryption program to stop getting stuck
 
 – What did you learn doing this project?
     - I am significantly more confident in making simple python scripts

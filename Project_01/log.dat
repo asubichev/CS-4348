@@ -1,59 +1,52 @@
-2023-03-01 16:32 [START] Logging Started.
-2023-03-01 16:38 [START] Logging Started.
-2023-03-01 16:39 [PASSKEY] New passkey set.
-2023-03-01 16:39 [PASSKEY] New passkey set.
-2023-03-01 16:39 [STOP] Logging Stopped.
-2023-03-01 16:44 [START] Logging Started.
-2023-03-01 16:44 [STOP] Logging Stopped.
-2023-03-01 16:47 [START] Logging Started.
-2023-03-01 16:47 [STOP] Logging Stopped.
-2023-03-01 16:47 [START] Logging Started.
-2023-03-01 16:47 [STOP] Logging Stopped.
-2023-03-01 16:51 [START] Logging Started.
-2023-03-01 16:51 [PASSKEY] New passkey set.
-2023-03-01 16:51 [STOP] Logging Stopped.
-2023-03-01 16:56 [START] Logging Started.
-2023-03-01 21:48 [START] Logging Started.
-2023-03-01 21:48 [PASSKEY] New passkey set.
-2023-03-01 21:48 [ENCRYPT] Message encrypted.
-2023-03-01 21:48 [STOP] Logging Stopped.
-2023-03-01 22:46 [START] Logging Started.
-2023-03-01 22:48 [START] Logging Started.
-2023-03-01 22:51 [START] Logging Started.
-2023-03-01 22:52 [STOP] Logging Stopped.
-2023-03-01 22:52 [START] Logging Started.
-2023-03-01 22:52 [PASSKEY] New passkey set.
-2023-03-01 22:52 [ENCRYPT] Message encrypted.
-2023-03-01 22:52 [STOP] Logging Stopped.
-2023-03-03 12:06 [START] Logging Started.
-2023-03-03 12:06 [PASSKEY] New passkey set.
-2023-03-03 12:06 [STOP] Logging Stopped.
-2023-03-03 12:06 [START] Logging Started.
-2023-03-03 12:06 [PASSKEY] New passkey set.
-2023-03-03 12:06 [STOP] Logging Stopped.
-2023-03-03 12:08 [START] Logging Started.
-2023-03-03 12:08 [STOP] Logging Stopped.
-2023-03-03 12:10 [START] Logging Started.
-2023-03-03 12:10 [STOP] Logging Stopped.
-2023-03-03 12:10 [START] Logging Started.
-2023-03-03 12:10 [PASSKEY] New passkey set.
-2023-03-03 12:10 [STOP] Logging Stopped.
-2023-03-03 12:10 [START] Logging Started.
-2023-03-03 12:10 [PASSKEY] New passkey set.
-2023-03-03 12:10 [STOP] Logging Stopped.
-2023-03-03 12:19 [START] Logging Started.
-2023-03-03 12:19 [PASSKEY] New passkey set.
-2023-03-03 12:19 [STOP] Logging Stopped.
-2023-03-03 12:22 [START] Logging Started.
-2023-03-03 12:22 [PASSKEY] New passkey set.
-2023-03-03 12:22 [ENCRYPT] Message encrypted.
-2023-03-03 12:22 [STOP] Logging Stopped.
-2023-03-03 12:23 [START] Logging Started.
-2023-03-03 12:24 [STOP] Logging Stopped.
-2023-03-03 12:24 [START] Logging Started.
-2023-03-03 12:31 [STOP] Logging Stopped.
-2023-03-03 12:33 [START] Logging Started.
-2023-03-03 12:35 [PASSKEY] New passkey set.
-2023-03-03 12:35 [ENCRYPT] Message encrypted.
-2023-03-03 12:35 [STOP] Logging Stopped.
-2023-03-03 12:35 [START] Logging Started.
+2023-03-03 13:47 [START] Logging Started.
+2023-03-03 13:49 [STOP] Logging Stopped.
+2023-03-03 13:49 [START] Logging Started.
+2023-03-03 13:51 [RESULT] 
+2023-03-03 13:51 [STOP] Logging Stopped.
+2023-03-03 13:51 [START] Logging Started.
+2023-03-03 13:56 [ERROR] Password not set
+2023-03-03 13:56 [RESULT] 
+2023-03-03 13:56 [DECRYPT] Message decrypted.
+2023-03-03 13:56 [RESULT] GREI
+2023-03-03 13:58 [RESULT] FFUSWWW
+2023-03-03 13:58 [RESULT] 
+2023-03-03 14:00 [STOP] Logging Stopped.
+2023-03-03 14:03 [START] Logging Started.
+2023-03-03 14:04 [RESULT] 
+2023-03-03 14:04 [RESULT] FFUSWWW
+2023-03-03 14:04 [RESULT] KEUASEB
+2023-03-03 14:06 [STOP] Logging Stopped.
+2023-03-03 14:06 [START] Logging Started.
+2023-03-03 14:06 [RESULT] 
+2023-03-03 14:07 [RESULT] MGFMRBT
+2023-03-03 14:07 [RESULT] LOBUNAS
+2023-03-03 14:08 [STOP] Logging Stopped.
+2023-03-03 14:08 [START] Logging Started.
+2023-03-03 14:08 [RESULT] 
+2023-03-03 14:08 [RESULT] CBKIK
+2023-03-03 14:08 [RESULT] 
+2023-03-03 14:09 [RESULT] CCKIK
+2023-03-03 14:09 [RESULT] BBSES
+2023-03-03 14:10 [STOP] Logging Stopped.
+2023-03-03 14:10 [START] Logging Started.
+2023-03-03 14:10 [RESULT] 
+2023-03-03 14:11 [RESULT] UOTBASV
+2023-03-03 14:12 [RESULT] CUFBAIP
+2023-03-03 14:13 [STOP] Logging Stopped.
+2023-03-03 14:14 [START] Logging Started.
+2023-03-03 14:14 [START] Logging Started.
+2023-03-03 14:14 [RESULT] 
+2023-03-03 14:14 [RESULT] MTKHEFBF
+2023-03-03 14:15 [STOP] Logging Stopped.
+2023-03-03 14:16 [START] Logging Started.
+2023-03-03 14:16 [RESULT] 
+2023-03-03 14:16 [RESULT] BVXBL
+2023-03-03 14:16 [RESULT] BTNFB
+2023-03-03 14:17 [RESULT] BUFDG
+2023-03-03 14:17 [STOP] Logging Stopped.
+2023-03-03 14:19 [START] Logging Started.
+2023-03-03 14:20 [ERROR] Password not set
+2023-03-03 14:20 [STOP] Logging Stopped.
+2023-03-03 14:20 [START] Logging Started.
+2023-03-03 14:20 [ERROR] Password not set
+2023-03-03 14:20 [STOP] Logging Stopped.

@@ -4,9 +4,9 @@ import re
 def main():
     passkey = ''
     for line in sys.stdin:
-        print('the line is this: ' + line.rstrip())
+        #print('the line is this: ' + line.rstrip())
         result = [None, None]
-        msg = line.split(" ", 1) #msg[0] = cmd, msg[1] = arg
+        msg = line.split(" ", 1) #msg[0] is cmd, msg[1] is arg
         #TODO: make cmd accept anycase
         cmd = msg[0]
         if cmd.rstrip() == 'QUIT':
@@ -29,8 +29,10 @@ def main():
 
         if result[0] == -1:
             print('ERROR ' + result[1])
+            sys.stdout.flush()
         else:
             print('RESULT ' + result[1])
+            sys.stdout.flush()
     #program end
 
 #will return encrypted key, or return error
