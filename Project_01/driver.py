@@ -17,9 +17,10 @@ def main():
 
     #TODO: include 'help' functionality
     #TODO: include a menu that shows possible commands
-    #NOTE: history should prepend, and then only show recent 20
     #TODO: history should remove stuff older than 20
     #TODO: all input()s should be validated
+    #TODO: inputs should either all be on same line as prompt, or all be after newline
+    #FIXME: what happens if you try to encrypt without setting a password?
     for line in sys.stdin:
         line = line[:-1] # the 'better' approach is probably still using rstrip
         if line == 'quit':
@@ -37,6 +38,9 @@ def main():
             if usrarg == '':
                 usrarg = input('Please enter password: ')
                 # history.insert(0, pkinp) # don't store if history used, SIKE we don't even store passwords
+            elif usrarg == None: # if user wants to not use history, but just go back
+                print('Please enter a command:')
+                continue
             encps.stdin.write('PASSKEY ' + usrarg + '\n')
             logps.stdin.write('PASSKEY New passkey set.\n') # i believe encryption program writes to logps, not driver.. T-T not sure
         elif line == 'encrypt':
@@ -44,11 +48,14 @@ def main():
             if usrarg == '':
                 usrarg = input('Please enter string to encrypt: ')
                 history.insert(0, usrarg)
+            elif usrarg == None:
+                print('Please enter a command:')
+                continue
             else:
                 #we pull this used string to most recent
                 history.remove(usrarg)
                 history.insert(0, usrarg)
-            #TODO: store encrypted string in history as well
+            #FIXME: store encrypted string in history as well
             encps.stdin.write('ENCRYPT ' + usrarg + '\n')
             logps.stdin.write('ENCRYPT Message encrypted.\n')
         elif line == 'decrypt':
@@ -56,13 +63,16 @@ def main():
             if usrarg == '':
                 usrarg = input('Please enter string to decrypt: ')
                 history.insert(0,usrarg)
+            elif usrarg == None:
+                print('Please enter a command:')
+                continue
             else:
                 #we pull this used string to most recent
                 history.remove(usrarg)
                 history.insert(0, usrarg)
-            #TODO: store decrypted string in history as well
+            #FIXME: store decrypted string in history as well
             encps.stdin.write('DECRYPT ' + usrarg + '\n')
-            logs.stdin.write('DECRYPT Message decrypted.\n')
+            logps.stdin.write('DECRYPT Message decrypted.\n')
         elif line == 'history':
             printhistory(history)
         else:
@@ -81,7 +91,7 @@ def printhistory(history):
 
 def usehistory(history):
     if len(history) == 0: return ''
-    choiche = input('Would you like to use history?\n1. Yes, I would\n2. No, I wouldn\'t\n') # newline is already stripped w input()
+    choiche = input('Would you like to use history?\n1. Yes, I would\n2. No, I wouldn\'t\n3. Go back\n') # newline is already stripped w input()
     if choiche == '1':
         printhistory(history)
         seli = input('Please indicate item number: ')
@@ -89,6 +99,8 @@ def usehistory(history):
         return history[int(seli) - 1]
     if choiche == '2':
         return ''
+    elif choiche == '3':
+        return None
 
 
 if __name__ == '__main__':
