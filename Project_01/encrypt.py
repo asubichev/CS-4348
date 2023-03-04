@@ -9,8 +9,12 @@ def main():
         msg = line.split(" ", 1) #msg[0] is cmd, msg[1] is arg
         #TODO: make cmd accept anycase
         cmd = msg[0]
-        if cmd.rstrip() == 'QUIT':
-            break
+        if len(msg) < 2:
+            if cmd.rstrip() == 'QUIT':
+                break
+            else:
+                raise Exception('Argument can\'t have less than one argument')
+                break
         arg = msg[1].upper().rstrip() #to get rid of possible newline after argument
         if not re.fullmatch('[A-Z]+', arg): #this means argument isn't one allcaps word
             result = [-1, 'Argument not included']
