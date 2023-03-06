@@ -8,19 +8,13 @@ def main():
     filename = sys.argv[1]
 
     # make ps for logger program
-    logps = Popen(['python3', 'logger.py'], stdout=PIPE, stdin=PIPE, encoding='utf8')
+    logps = Popen(['python3', 'logger.py', filename], stdout=PIPE, stdin=PIPE, encoding='utf8')
     # make ps for encryption program
     encps = Popen(['python3', 'encrypt.py'], stdout=PIPE, stdin=PIPE, encoding='utf8')
 
     history = []
     print('Please enter a command:')
-
-    #TODO: include 'help' functionality
-    #TODO: include a menu that shows possible commands
-    #TODO: history should remove stuff older than 20
-    #TODO: all input()s should be validated
-    #TODO: inputs should either all be on same line as prompt, or all be after newline
-    #FIXME: what happens if you try to encrypt without setting a password?
+    
     for line in sys.stdin:
         line = line[:-1] # the 'better' approach is probably still using rstrip
         if line == 'quit':
@@ -80,7 +74,6 @@ def main():
                 #we pull this used string to most recent
                 history.remove(usrarg)
                 history.insert(0, usrarg)
-            #FIXME: store decrypted string in history as well
             encps.stdin.write('DECRYPT ' + usrarg + '\n')
             encps.stdin.flush()
             output = encps.stdout.readline()

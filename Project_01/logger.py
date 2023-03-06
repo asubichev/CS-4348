@@ -1,6 +1,8 @@
 import sys
 from datetime import datetime
 
+ff = "./log.dat"
+
 def main():
     #towrite formats a log message
     #writelog takes formatted message and logs it
@@ -27,10 +29,13 @@ def processinput(str, tm):
     return out
 
 def writelog(message):
-    f = open('./log.dat', 'a')
+    f = open(ff, 'a')
     f.write(message)
     f.close()
     
+def getfilename():
+    return ff
 
 if __name__ == "__main__":
+    ff = "./" + sys.argv[1]
     main()
